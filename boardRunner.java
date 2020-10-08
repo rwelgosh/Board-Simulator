@@ -80,6 +80,7 @@ public class boardRunner extends PApplet {
 			if(key == 's' || key == 'S') {
 				System.out.println("s pressed");
 				event = EventNum;
+				heat = 1;
 				check = false;
 				setEvent = 255;
 			}
@@ -117,7 +118,6 @@ public class boardRunner extends PApplet {
 				EventNum += 9;
 			}
 		}
-		System.out.println(event + " " + heat);
 	}
 	
 }
