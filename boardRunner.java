@@ -1,7 +1,8 @@
 import processing.core.PApplet;
 
 public class boardRunner extends PApplet {
-	private int event, heat;
+	private int event, heat, setEvent, EventNum;
+	private boolean check;
 	
 	public static void main(String[] args) {
 		PApplet.main("boardRunner");
@@ -10,6 +11,9 @@ public class boardRunner extends PApplet {
 	public void settings() {
 		size(570, 300);
 		event = heat = 1;
+		setEvent = 255;
+		EventNum = 0;
+		check = false;
 	}
 	
 	public void setup() {
@@ -34,7 +38,15 @@ public class boardRunner extends PApplet {
 		text(Integer.toString(heat), 490, 100);
 		line(570, 30, 570, 130);
 		
-		//Stuff underneath
+		//Details
+		textSize(15);
+		text("Use up and down arrows to change event. Use right and left arrows to change heat.", 5, 160);
+		text("Press CTRL and then enter a heat number and then click 's' to set the heat.", 5, 180);
+		
+		textSize(60);
+		fill(setEvent);
+		text("Enter Event: " + Integer.toString(EventNum), 20, 270);
+		
 	}
 	
 	public void keyPressed() {
@@ -52,6 +64,57 @@ public class boardRunner extends PApplet {
 			}
 			if(keyCode == LEFT) {
 				heat--;
+			}
+			if(keyCode == CONTROL) {
+				if(setEvent == 255) {
+					setEvent = 0;
+					check = true;
+				} else {
+					setEvent = 255;
+					check = false;
+				}
+			}
+		}
+		if(check) {
+			System.out.println("check = true");
+			if(key == 's' || key == 'S') {
+				System.out.println("s pressed");
+				event = EventNum;
+				check = false;
+				setEvent = 255;
+			}
+		}
+		if(check) {
+			if (key == '0') {
+				EventNum *= 10;
+				EventNum += 0;
+			} else if (key == '1') {
+				EventNum *= 10;
+				EventNum += 1;
+			} else if (key == '2') {
+				EventNum *= 10;
+				EventNum += 2;
+			} else if (key == '3') {
+				EventNum *= 10;
+				EventNum += 3;
+			} else if (key == '4') {
+				EventNum *= 10;
+				EventNum += 4;
+			} else if (key == '5') {
+				EventNum *= 10;
+				EventNum += 5;
+			} else if (key == '6') {
+				EventNum *= 10;
+				EventNum += 6;
+			} else if (key == '7') {
+				EventNum *= 10;
+				EventNum += 7;
+			} else if (key == '8') {
+				EventNum *= 10;
+				EventNum += 8;
+			} else if (key == '9') {
+				EventNum *= 10;
+				EventNum += 9;
 			}
 		}
 		System.out.println(event + " " + heat);
